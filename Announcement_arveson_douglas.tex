@@ -1,0 +1,1090 @@
+\documentclass[11pt,reqno]{amsart}
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL homogeneous_arveson_douglas_announcement_v2.tex   Tue Nov 24 18:40:31 2026
+%DIF ADD homogeneous_arveson_douglas_announcement_v3.tex   Tue Nov 24 18:40:31 2026
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[letterpaper,margin=1.02in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,mathtools,mathrsfs}
+\usepackage{microtype}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\hypersetup{hidelinks,pdftitle={The homogeneous Arveson--Douglas conjecture: a research announcement},
+ pdfsubject={Vector-valued homogeneous Arveson--Douglas theorem and a three-step projective lifting outline}}
+\newtheorem{theorem}{Theorem}
+\renewcommand{\thetheorem}{\Alph{theorem}}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\cI}{\mathscr I}
+\newcommand{\cK}{\mathscr K}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dbar}{\bar\partial}
+\newcommand{\FS}{\mathrm{FS}}
+\newcommand{\DA}{\mathrm{DA}}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Quot}{Quot}
+\DeclareMathOperator{\Gr}{Gr}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\Id}{Id}
+\allowdisplaybreaks[2]
+\emergencystretch=1.2em
+\title[The homogeneous Arveson--Douglas conjecture]{The homogeneous Arveson--Douglas conjecture:\\a research announcement}
+\date{23 November 2026}
+\thanks{Research draft for independent mathematical assessment. The statements
+ announced here summarize the proposed proof in the companion manuscript
+%DIF 39c39
+%DIF <  \cite{DingFangTang}; this announcement is not a substitute for its detailed proofs.}
+%DIF -------
+ \textcolor{red}{\cite{DingFangTang}} \textcolor{blue}{\cite{Companion}}; this announcement is not a substitute for its detailed proofs.} %DIF > 
+%DIF -------
+\subjclass[2020]{Primary 47A13; Secondary 32W05, 13D02, 47B10}
+%DIF < \keywords{Arveson--Douglas conjecture, homogeneous submodules, Drury--Arveson space, projective geometry, holomorphic division, essential normality}
+%DIF -------
+\keywords{Arveson--Douglas conjecture, homogeneous submodules, Drury--Arveson space, %DIF > 
+ projective geometry, holomorphic division, essential normality} %DIF > 
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF CFONT PREAMBLE %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\DeclareOldFontCommand{\sf}{\normalfont\sffamily}{\mathsf} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue} #1}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red} #1}} %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF HYPERREF PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
+%DIF COLORLISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+%DIF DIFCODE_CFONT %DIF PREAMBLE
+  moredelim=[il][\color{red}\scriptsize]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\sffamily]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+
+\begin{document}
+\begin{abstract}
+We announce a projective lifting approach to the homogeneous
+Arveson--Douglas conjecture for homogeneous submodules of the vector-valued
+Drury--Arveson space $H_m^2\otimes\C^r$, with $r<\infty$.
+The principal estimate bounds the degree-$n$ coordinate defect by
+$C/(n+1)$. For an infinite-dimensional algebraic quotient of support
+dimension $\delta$, it gives quotient commutators in the weak Schatten
+class $\cS_{\delta,\infty}$. The outline has three steps: realize the
+graded scalar problem on projective space with its exact norm;
+construct a uniform holomorphic lift by division, compatible metrics,
+and a finite $\bar\partial$ correction; and return the estimate to the
+Drury--Arveson shift, including finite coefficient multiplicity through
+auxiliary variables. Singular values are counted in the original
+vector quotient. The intermediate constructions are stated as
+theorems, and a historical account identifies their division,
+resolution, and Dolbeault antecedents.
+\end{abstract}
+\maketitle
+
+\section{Historical background}
+
+The Arveson--Douglas problem asks how polynomial relations affect the
+essential normality of the multivariable shift. Arveson's 1998 work
+established the Drury--Arveson space as a model for commuting row
+contractions and proved Schatten estimates for the full shift, together
+with its sphere Toeplitz extension \cite{Arveson1998}. Compression to a
+polynomial quotient introduces a further term: the part of coordinate
+multiplication discarded by the quotient projection. Controlling this
+term is the analytic content of the problem.
+
+For submodules generated by vector monomials, Arveson subsequently
+proved projection-commutator estimates in $\cS_p$ for $p>2m$ and
+quotient-commutator estimates for $p>m$, where $m$ is the number of
+variables. His Conjecture~A asks for compactness of the projection
+commutators for arbitrary homogeneous vector generators
+\cite{Arveson2005}. Douglas connected essential normality with index
+theory and $K$-homology, and proposed that the dimension of the quotient's
+support should determine its summability threshold \cite{DouglasIndex}.
+His Conjecture~9 is stated for ball Bergman quotients and predicts
+$p>\dim(Z\cap\mathbb B^m)$. The homogeneous Drury--Arveson formulation
+has the same dimension principle.
+
+Guo and Kai Wang established important homogeneous cases, including
+principal submodules in arbitrary ambient dimension and the scalar
+problem in two and three variables \cite{GuoWang}. Shalit made
+norm-controlled polynomial division an explicit organizing principle
+\cite{ShalitDivision}. A controlled decomposition
+$F=\sum_\nu a_\nu f_\nu$, followed by differentiation and projection
+perpendicular to the ideal, eliminates the terms
+$\sum_\nu f_\nu\partial a_\nu$. The differentiated generators then
+give an off-diagonal estimate of order $n^{-1/2}$, and the Hilbert
+function supplies the dimension-dependent Schatten threshold.
+Eschmeier's related operator-inequality criterion
+\cite{EschmeierCriterion}, in the projected-derivative form recorded
+in \cite[Section~6, equation~(6.1)]{ShalitDivision}, identifies the
+estimate that a division argument must produce.
+Shalit's scalar encoding of vector polynomials by expressions linear
+in auxiliary variables also supplies the antecedent for the passage
+to finite coefficient multiplicity
+\cite[Section~5, equation~(5.1)]{ShalitDivision}.
+
+Engli\v{s} and Eschmeier proved the geometric conjecture for homogeneous
+varieties smooth away from the origin \cite{EnglisEschmeier}. Their
+submodule consists of functions vanishing on the variety, corresponding
+to radical ideals. Their method uses restriction to the variety and
+the generalized Toeplitz calculus of Boutet de Monvel and Guillemin,
+within a scale of holomorphic Sobolev spaces containing the
+Drury--Arveson space. For a variety of dimension $\delta$, their
+homogeneous proof gives $\cS_p$ membership for $p>\delta$ and explicitly
+records the weak endpoint $\cS_{\delta,\infty}$. They also treat smooth
+components of different dimensions meeting only at the origin. Thus
+both the geometric interpretation and the weak Schatten endpoint have
+substantial precedents.
+
+Douglas, Tang, and Yu developed an $L^2$ Dolbeault and index-theoretic
+approach in their analytic Grothendieck--Riemann--Roch theorem. In their complete-intersection setting, the
+variety meets the sphere transversely, its boundary is smooth, and
+its interior singularities may be isolated. Their Section~3 uses $\dbar$-Neumann
+analysis.
+This analytical framework produces on the regular locus to construct a relative Dolbeault
+class whose
+boundary is the CR fundamental class. For $I=(p_1,\ldots,p_M)$,
+$M\le m-2$, with the generator Jacobian of rank $M$ along
+$Z_I\cap\partial\mathbb B^m$ and transverse sphere intersection,
+their complete-intersection setting has smooth boundary and possibly
+isolated interior singularities. A bounded restriction and extension
+theorem connects the weighted Bergman module on the variety. Section~4 connects the variety's weighted Bergman space to
+the ball quotient by restriction and a Beatrous-type integral
+extension. They obtain essential normality of the ideal and
+quotient and identify the quotient
+Toeplitz class with the boundary's $\mathrm{spin}^c$ fundamental class
+of the boundary \cite[Theorems~1.2, 1.4 and~1.5]{DouglasTangYu}.
+Homogeneity is not required. Both their $\dbar$ analysis and their
+restriction and
+extension methods are substantive antecedentsof the
+present argument. This nonhomogeneous geometric result supplies both Dolbeault and
+extension antecedents; its integral extension construction and the
+finite correction used below are distinct analytic procedures.
+
+Douglas, Jabbari, Tang, and Yu developed the resolution viewpoint
+outlined by Douglas \cite{DouglasIndex} into a construction for
+monomial ideals \cite{DouglasJabbariTangYu}. They give finite exact
+complexes of essentially normal Hilbert modules with bounded module
+maps, and express the quotient Toeplitz class as an alternating sum
+of the classes of the terms. The construction retains normal-jet
+information and applies also to the Drury--Arveson space. Thus the
+use of resolutions to connect essential normality, nonreduced
+structure, and index theory is an established part of the subject.
+
+Ding \cite{Ding26} extended Engli\v{s} and Eschmeier's results  to strongly pseudoconvex  manifold with the Property (S) by Hironaka’s embedded desingularization theorem, and considered the  Schatten-class problem of the antisymmetric sum of the compression of the multiplication operators to the quotient  holomorphic Sobolev spaces.
+The antisymmetric sum was induced by Holton and Howe \cite{HeltonHowe75}, and plays a key role in noncommutative geometry. The division and correction steps also belong to a longer history
+in complex analysis. Parameter-dependent division and quantitative
+linear splittings were developed by Galligo and Hauser--M\"uller
+\cite{Galligo,HauserMuller}. Holomorphic division by $L^2$ methods
+goes back to H\"ormander, Kelleher--Taylor, and Skoda
+\cite{HormanderGenerators,KelleherTaylor,Skoda1972,Skoda1978}.
+Andersson--Wulcan's treatment of graded resolutions on projective
+space is a particularly close antecedent of the descending
+$\dbar$ construction \cite[Section~6]{AnderssonWulcan}.
+The discussion of Theorems~\ref{thm:division}--\ref{thm:lift} below
+specifies what is inherited from these works and what quantitative
+assertions are needed here.
+
+The companion manuscript \cite{DingFangTang, Companion} develops these division,
+resolution, and Dolbeault methods into a uniform projective lifting
+construction for homogeneous ideal sheaves. It works on smooth
+ambient projective space while retaining nilpotent and embedded
+structure. Complete spaces of sections control degeneration; sampled
+coefficient metrics place division, differentiated generators, and
+curvature in compatible norms. Positive twisting and a finite
+correction through the syzygies then give a global lift bounded in
+the original scalar norm. An auxiliary-variable construction transfers
+the resulting estimate to vector-valued modules. The additional claim
+is the uniform analytic control that makes this passage effective;
+the operator reduction and the role of the Hilbert function retain
+their established precedents.
+
+\section{The vector-valued theorem and the three-step outline}
+
+Let $m,r\ge1$, let $R=\C[z_1,\ldots,z_m]$, and give the Drury--Arveson space $H_m^2$
+its standard normalization
+\[
+ \langle z^\alpha,z^\beta\rangle=0\quad(\alpha\ne\beta),
+ \qquad \|z^\alpha\|^2=\frac{\alpha!}{|\alpha|!}.
+\]
+Fix a Hermitian coefficient space $\C^r$, placed in degree zero.
+For a homogeneous submodule $M\subset R\otimes\C^r$, set
+\[
+ \mathcal M=\overline M\subset H_m^2\otimes\C^r,\qquad
+ Q=\mathcal M^\perp,\qquad Q_n=(R_n\otimes\C^r)\ominus M_n.
+\]
+Write $Z_j=M_{z_j}\otimes\Id_r$, $S_j=P_QZ_j|_Q$, and
+$V_j=Z_j|_{\mathcal M}$. Introduce the off-diagonal maps and their
+positive defect
+\begin{equation}\label{eq:defect}
+ B_{j,n}=P_{M_{n+1}}Z_j|_{Q_n},
+ \qquad A_n=\sum_{j=1}^m B_{j,n}^*B_{j,n}.
+\end{equation}
+For $p>0$, the weak Schatten class $\cS_{p,\infty}$ consists of compact
+operators with singular values $s_k(T)=O(k^{-1/p})$.
+
+\begin{theorem}[Homogeneous essential normality in finite multiplicity]\label{thm:main}
+For every homogeneous submodule $M\subset R\otimes\C^r$ there are
+constants $C_M,C_M'<\infty$ such that, for all $n\ge0$,
+\begin{equation}\label{eq:main}
+ 0\le A_n\le\frac{C_M}{n+1}\Id_{Q_n},
+ \qquad
+ \|[S_i^*,S_j]|_{Q_n}\|\le\frac{C_M'}{n+1}.
+\end{equation}
+If $T=(R\otimes\C^r)/M$ is infinite dimensional and
+$\delta=\dim\Supp_R T$, then
+\begin{equation}\label{eq:weak}
+ [S_i^*,S_j]\in\cS_{\delta,\infty}
+ \subset\bigcap_{p>\delta}\cS_p.
+\end{equation}
+The column $B=(P_{\mathcal M}Z_j|_Q)_{j=1}^m:Q\to\mathcal M^{\oplus m}$
+and the projection commutators $[P_{\mathcal M},Z_j]$ belong to
+$\cS_{2\delta,\infty}$. The restriction commutators satisfy
+\[
+ [V_i^*,V_j]\in\cS_{m,\infty}
+ \subset\bigcap_{p>m}\cS_p.
+\]
+If $T$ is finite dimensional, the quotient commutators and off-diagonal
+operators have finite rank; the restriction assertion still holds.
+\end{theorem}
+
+The support dimension is the complex dimension of
+$\Supp_R T\subset\C^m$. The constants depend on the fixed module and
+its original Hermitian geometry. The statement uses the standard
+grading and includes every closed graded submodule of
+$H_m^2\otimes\C^r$: its homogeneous polynomial part is finitely
+generated and dense. For $r=1$ it includes arbitrary homogeneous
+ideals, with singular or nonreduced structure.
+
+The proof separates the size of an operator block from its multiplicity.
+The exact identities
+\begin{align}
+ [S_i^*,S_j]|_{Q_n}
+ &=P_Q[Z_i^*,Z_j]|_{Q_n}-B_{i,n}^*B_{j,n},\label{eq:compression}\\
+ [Z_i^*,Z_j]|_{R_n\otimes\C^r}
+ &=\frac{\delta_{ij}\Id-Z_jZ_i^*}{n+1}\label{eq:ambient}
+\end{align}
+reduce the analytic task to the first estimate in \eqref{eq:main}.
+The Hilbert function then gives the exponent $\delta$.
+
+\subsection*{The proof in three steps}
+\begin{enumerate}
+\item \textbf{Projective realization.}
+Homogeneity identifies polynomial degrees with powers of the
+hyperplane bundle. Saturation and an exact norm identity transfer the
+scalar problem to an ideal sheaf on smooth projective space. Complete
+presentations prepare an algebraic model stable under rescaling.
+\item \textbf{Uniform division and $\bar\partial$ lifting.}
+A weighted Gr\"obner-basis argument gives uniform local division.
+Sampled Hermitian metrics control differentiated generators and
+curvature in compatible norms. A finite correction through the
+syzygies, using $\bar\partial$ on the presenting vector bundles,
+produces the global holomorphic lift.
+\item \textbf{Return to the shift.}
+Differentiation and projection turn the lift into the scalar
+coordinate-defect estimate. Auxiliary variables transfer that bound
+to the original vector-valued module. Its Hilbert function then
+determines the Schatten exponent.
+\end{enumerate}
+The geometric core below is scalar, as in the full manuscript.
+Step~3 recovers finite coefficient multiplicity by an explicit
+identity before singular values are counted.
+
+\section{Step 1: projective realization of the graded problem}
+\label{sec:step-one}
+
+We first work with an arbitrary scalar homogeneous ideal
+$I\subset R^{(d)}=\C[x_1,\ldots,x_d]$. The number $d$ may later be
+$m+r$ in the auxiliary-variable construction. Put $N=d-1$,
+$W=\PP^N$, and $L=\cO_W(1)$ with its Fubini--Study metric.
+The saturation $I^{\mathrm{sat}}/I$ is finite dimensional, and
+\[
+ R^{(d)}_n=H^0(W,L^n),\qquad
+ I_n^{\mathrm{sat}}=H^0(W,\cI\otimes L^n),\qquad
+ \cI=\widetilde I\subset\cO_W.
+\]
+Thus $I_n=H^0(W,\cI\otimes L^n)$ for all sufficiently large $n$.
+For normalized Fubini--Study volume the norm correspondence is exact:
+\begin{equation}\label{eq:norm}
+ \|F_n\|_{\DA}^2=c_n\|F_n\|_{\FS}^2,
+ \qquad c_n=\binom{n+d-1}{d-1},\qquad
+ \frac{c_n}{c_{n+1}}=\frac{n+1}{n+d}.
+\end{equation}
+Indeed, monomials are orthogonal and
+$\|x^\alpha\|_{\FS}^2=(d-1)!\alpha!/(n+d-1)!$ for $|\alpha|=n$.
+Consequently degreewise orthogonal projections agree in the two
+realizations. The finitely many degrees changed by saturation do not
+affect Schatten membership. This transfer uses homogeneity to
+preserve both the relations and the Hilbert-space geometry.
+
+The cases $d=1$ and the zero or unit ideal sheaf are elementary.
+Assume henceforth that $N\ge1$ and $\cI$ is nonzero and proper.
+
+\subsection{Theorem B: preserving the relations under rescaling}
+The local analysis must remain uniform when the center moves and the
+observation scale tends to zero. Normalizing the generators prevents
+their coefficients from vanishing, but by itself gives no control of
+the relations among their polynomial multiples. The construction
+therefore chooses complete spaces of sections at every syzygy stage. Choose degrees $0\le D_0\le\cdots\le D_N$ and a complex
+\begin{equation}\label{eq:complex}
+ E_N\xrightarrow{d_N}\cdots\xrightarrow{d_1}E_0
+ \xrightarrow{d_0=\Phi}\cO_W,
+ \qquad E_q=\mathcal V_q\otimes L^{-D_q},
+\end{equation}
+by setting $\cK_0=\cI$ and, recursively,
+\[
+ \mathcal V_q=H^0(W,\cK_q(D_q)),\qquad
+ \im d_q=\cK_q,\qquad \cK_{q+1}=\ker d_q.
+\]
+\begin{remark}[The resolution antecedent]
+The resolution viewpoint has a direct antecedent in the exact
+Hilbert-module complexes of Douglas--Jabbari--Tang--Yu
+\cite{DouglasJabbariTangYu}. Here \eqref{eq:complex}, with its last
+map factored through $\cI$, is a partial locally free resolution of a
+coherent ideal sheaf: it is exact at $E_0,\ldots,E_{N-1}$, and
+injectivity of $d_N$ is not asserted. Its successive syzygies correct
+holomorphic overlap errors. Sheaf exactness alone does not ensure
+exactness after Hilbert-space completion; the uniform division and
+metric estimates below supply the analytic control needed for the
+lifting theorem.
+\end{remark}
+
+Here $D_0$ is regular uniformly over the Hilbert scheme with the
+prescribed quotient polynomial; each subsequent $D_q$ is regular for
+every kernel in $\Quot_W(E_{q-1},P_{\cK_{q-1}})$, the proper Quot
+family with the indicated quotient Hilbert polynomial.
+Such degrees exist by uniform Castelnuovo--Mumford regularity
+\cite{Stacks}. Using the complete section space, in a degree chosen
+for the entire family, is essential.
+
+Write $B_s=\{z\in\C^N:|z|<s\}$. On a fixed buffered affine chart define
+\begin{equation}\label{eq:gram}
+ G_{-1}=1,\qquad
+ G_q(p,\eps)=\int_{B_1}d_q(p+\eps z)^*G_{q-1}(p,\eps)
+                    d_q(p+\eps z)\,d\mu(z),
+\end{equation}
+where $\mu$ is probability volume. At every nonzero stage $G_q$ is
+positive definite. Set
+\begin{equation}\label{eq:normalized}
+ A_q^{p,\eps}(z)=G_{q-1}(p,\eps)^{1/2}
+ d_q(p+\eps z)G_q(p,\eps)^{-1/2}.
+\end{equation}
+The normalization gives
+\[
+\int_{B_1}(A_q^{p,\eps})^*A_q^{p,\eps}\,d\mu=\Id.
+\]
+Thus the columns form an orthonormal frame in a fixed
+finite-dimensional polynomial space, proving coefficient compactness.
+The next theorem additionally asserts preservation of the images
+and kernels, which requires the complete-section construction.
+
+
+\begin{theorem}[Complete presentations under normalized limits]
+\label{thm:compact}
+The presentation \eqref{eq:complex} can be chosen so that the tuples
+$\bigl(A_0^{p,\eps},\ldots,A_N^{p,\eps}\bigr)$, with centers in
+fixed relatively compact subcharts of a finite buffered affine atlas,
+and sufficiently small $\eps>0$,
+have compact closure in coefficient topology. After homogenization
+to the prescribed degrees $D_q-D_{q-1}$, every limiting tuple is
+exact as a sheaf complex at $E_0,\ldots,E_{N-1}$.
+
+Moreover, the homogeneous polynomial image $J_q$ of each normalized
+or limiting map
+\[
+ \C[Z_0,\ldots,Z_N](-D_q)^{\dim\mathcal V_q}
+ \longrightarrow
+ \C[Z_0,\ldots,Z_N](-D_{q-1})^{\dim\mathcal V_{q-1}}
+\]
+has the same Hilbert function in every degree. With $\mathcal V_{-1}=\C$,
+$E_{-1}=\cO_W$, $D_{-1}=0$, and $P_q$ the Hilbert polynomial of
+$\cK_q$, it is
+\begin{equation}\label{eq:hilbert}
+ \dim(J_q)_\ell=
+ \begin{cases}0,&\ell<D_q,\\ P_q(\ell),&\ell\ge D_q.\end{cases}
+\end{equation}
+\end{theorem}
+
+The normalization gives $\int_{B_1}(A_q^{p,\eps})^*A_q^{p,\eps}\,d\mu=\Id$;
+the columns therefore lie in a compact space of orthonormal frames of
+fixed-degree polynomials. Preserving their polynomial multiples is
+the deeper point. Affine dilations extend to projective automorphisms, and each
+constant coefficient change acts on an equally twisted bundle.
+The transformed kernels are thus points of fixed proper Quot
+schemes. The universal kernels are flat over these parameter spaces;
+uniform regularity and cohomology and base change identify their
+degree-$D_q$ sections with a vector bundle \cite{Stacks,Conrad}.
+Its inclusion in the fixed space
+$H^0(W,E_{q-1}(D_q))$ defines a Grassmannian map with closed image.
+Every limiting column space remains the \emph{complete} section
+space of a kernel in that family. It generates that kernel, and
+regularity identifies all its higher multiples with the higher
+section spaces.
+
+
+Finally, the complex identities pass to the limit. Inductively, the
+limiting next image is contained in the preceding kernel, and the
+two sheaves have the same Hilbert polynomial. Their quotient has
+zero Hilbert polynomial and hence is the zero coherent sheaf.
+This proves exactness and \eqref{eq:hilbert}; below $D_q$ the
+polynomial image is zero by its generating degree. Theorem B applies
+classical properness, regularity, and base change to the linked
+normalizations of an entire presentation. Its role is to give
+Theorem C a compact family in which image dimensions do not jump.
+
+\section{Step 2: uniform division and global holomorphic lifting}
+\label{sec:step-two}
+
+The analytic task is to solve $\Phi a=F$ with a holomorphic
+coefficient section $a$ whose norm is controlled uniformly in the
+large degree. The operators $\dbar$ act on forms with values in
+$E_q\otimes L^h$. The ideal sheaf records the relations; its locally
+free presentation supplies the bundles on which the estimates are
+made. The three ingredients are uniform division, compatible metrics,
+and a finite global correction.
+
+\subsection{Theorem C: division  with constants uniform over the family}
+For a homogeneous matrix $A$, write $A_{\mathrm{aff}}(z)=A(1,z)$.
+Membership in its analytic image sheaf means local holomorphic
+divisibility near every point under consideration.
+
+\begin{theorem}[Uniform holomorphic division]\label{thm:division}
+Let $\mathcal A$ be a compact coefficient family of homogeneous
+matrices
+\[
+ A:\C[Z_0,\ldots,Z_N](-e)^a\longrightarrow
+   \C[Z_0,\ldots,Z_N]^b
+\]
+of fixed size and degree $e\ge0$. Suppose that $\dim(\im A)_\ell$ is
+independent of $A\in\mathcal A$ for every $\ell$.
+For every $s>0$ there are $R_s>s$ and $C_s<\infty$ such that, for every
+$A\in\mathcal A$, every square-integrable holomorphic $\C^b$-valued
+$F$ belonging to its analytic image sheaf throughout $B_{R_s}$
+admits a holomorphic $\C^a$-valued lift $u$, linear in $F$, on $B_s$ with
+\begin{equation}\label{eq:division}
+ A_{\mathrm{aff}}u=F|_{B_s},\qquad
+ \|u\|_{L^2(B_s)}\le C_s\|F\|_{L^2(B_{R_s})}.
+\end{equation}
+\end{theorem}
+
+Galligo's parameter-dependent vector division theorem controls
+quotients and remainders in weighted coefficient norms; his
+flatness criterion identifies when the remainder vanishes on the
+module \cite[Theorems~1.2.7--1.2.8]{Galligo}. His
+Theorem~1.4.2 gives parameter-linear splittings. Hauser--M\"uller
+construct compatible continuous linear splittings on weighted
+Banach scales, with explicit bounds of the form
+$\|\sigma_s\|\le C s^{-\beta}$
+\cite[Theorems~5.1--5.2]{HauserMuller}.
+Theorem C adapts this quantitative division to compact families of
+homogeneous matrices and states the conclusion in two-ball $L^2$
+norms. Analytic dependence of the lift on a parameter is not part of
+its assertion. The weighted division and perturbation mechanism
+already occur in these classical works.
+
+
+Use one homogeneous Gr\"obner basis at a reference matrix.
+Choose a weighted coefficient $\ell^1$ norm so that each leading
+monomial dominates its tail. The monomial decomposition is an
+isometry on one Banach space containing all degrees. Nearby matrices
+give a perturbation of norm at most $1/2$, hence a degree-preserving
+Neumann inverse bounded by $2$. Equality of the image dimensions
+forces the division remainder to vanish on the image in each degree.
+The homogenizing variable is assigned weight one, so dehomogenization
+incurs no loss depending on the representation degree.
+
+For holomorphic data, Cartan's theorem~B supplies an initial,
+unestimated preimage \cite{GrauertRemmert}. Approximating that preimage
+produces polynomial \emph{image} approximants, to which the bounded
+division is applied afresh. Cauchy estimates and a finite compactness
+cover give \eqref{eq:division}. The theorem provides a sufficiently
+large input ball for each output ball; its hypothesis concerns the
+entire input ball. Theorem~\ref{thm:compact} verifies its assumptions
+for all stages of the presentation, after removing the common
+target grading shift.
+
+
+The full Hilbert-function hypothesis is convenient because it gives
+division in every homogeneous degree. For the affine conclusion
+alone, a common eventual Hilbert polynomial suffices: a polynomial
+image datum may be homogenized beyond the relevant stabilization
+degrees, and the unit weight of the homogenizing variable makes the
+estimate independent of that choice. The stronger formulation above
+is exactly the one supplied by Theorem B.
+
+
+The equation in Theorem C lifts an ambient holomorphic datum through
+a presentation. In a restriction--extension theorem, the datum is
+instead prescribed on a subvariety. The latter is the setting of
+Beatrous' estimates \cite{Beatrous} and their extension in Douglas--Tang--Yu
+\cite[Theorem~4.3]{DouglasTangYu}; it does not by itself provide
+the family of division operators asserted here.
+
+\subsection{Theorem D: a metric adapted to division and differentiation}
+The coefficient metric measures the size of a lift. It is auxiliary:
+the scalar datum and the final Drury--Arveson norm retain their
+original metrics. This freedom is necessary even for a smooth
+principal ideal. On $\PP^1$, let
+$\Phi=Z_0:\cO(-1)\to\cO$ and $F_n=Z_0Z_1^n$.
+The unique lift is $a_n=Z_1^n$, and normalized Fubini--Study norms give
+\[
+ \|a_n\|^2=\frac{1}{n+1},\qquad
+ \|F_n\|^2=\frac{1}{(n+1)(n+2)}.
+\]
+The lifting norm therefore grows as $\sqrt{n+2}$ in the standard
+coefficient metric, and comparison with any fixed smooth positive
+metric cannot remove this growth. The illustrative choice
+\[
+|v|_{H_\eps}^2=|\Phi v|^2+\eps^2|v|_{\mathrm{std}}^2
+\]
+instead gives
+$\|a_n\|_{H_\eps\otimes L^{n+1}}^2/\|F_n\|_{L^{n+1}}^2
+=1+\eps^2(n+2)$, which stays bounded when $\eps$ is a fixed
+multiple of $n^{-1/2}$. For a general presentation, one needs this
+adaptation together with bounds for all differentials, curvature,
+and differentiated generators.
+
+
+Sampled norms are scaled jet norms. At the first stage, orthogonality of monomials on $B_1$ gives the
+exact identity
+\begin{equation}\label{eq:jets}
+ G_0(p,\eps)[v]
+=\sum_{|\alpha|\le D_0}
+ \frac{N!\,\eps^{2|\alpha|}}{\alpha!(N+|\alpha|)!}
+ |(\partial^\alpha\Phi)(p)v|^2.
+\end{equation}
+The metric records all the finitely many jets, with their natural
+powers of the sampling radius. A coefficient direction remains
+visible even where its value vanishes, and one derivative costs a
+factor $\eps^{-1}$.
+
+\subsection{Sampling the presentation}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+\DIFdelend The recursion \eqref{eq:gram} can be expanded as
+\begin{equation}\label{eq:independent}
+ G_q(p,\eps)[v]=\int_{(B_1)^{q+1}}
+ \bigl|d_0(p+\eps z_0)\cdots d_q(p+\eps z_q)v\bigr|^2\,d\mu^{q+1}.
+\end{equation}
+The sample points are independent: evaluation of all factors at one
+point would give zero by the complex identities. Positivity follows
+inductively. If the integral defining $G_q[v]$ vanishes, positivity
+of $G_{q-1}$ forces $d_q(\cdot)v$ to be the zero polynomial. Independence of the columns over constants then gives $v=0$.
+
+\begin{theorem}[Compatible metrics with controlled curvature]
+\label{thm:metrics}
+For the fixed complete presentation \eqref{eq:complex}, there are smooth
+positive Hermitian metrics $H_{q,\eps}$, $0<\eps\le\eps_0$, with
+$H_{-1,\eps}=1$, such that every $d_q$ is contractive and
+\begin{equation}\label{eq:metric-estimates}
+ \|\Theta(H_{q,\eps})\|_{H_{q,\eps},\omega_{\FS}}
+       \le C\eps^{-2},\qquad
+ |(\partial_{x_j}\Phi)v|_{L^{-1}}
+       \le C\eps^{-1}|v|_{H_{0,\eps}}.
+\end{equation}
+The local metrics are uniformly comparable to the sampled forms
+$G_q$ on their actual bundle fibers. The derivative is taken in an
+ambient homogeneous coordinate and defines a map $E_0\to L^{-1}$;
+the target carries its original Fubini--Study metric.
+\end{theorem}
+
+View the product polynomial in \eqref{eq:independent} as a map
+$F_q(p)$ into a fixed finite-dimensional Hilbert space. Then
+$G_q=F_q^*F_q$ and
+\[
+ \partial_{p_a}F_q
+ =\eps^{-1}\sum_{j=0}^q\partial_{z_{j,a}}F_q.
+\]
+Differentiation is bounded on its fixed finite-dimensional polynomial
+space. This identity controls the first and second derivatives of
+$G_q$ \emph{relative to $G_q$} by $C\eps^{-1}$ and $C\eps^{-2}$,
+even as eigenvalues in a fixed coefficient frame approach zero.
+The comparison concerns $G_q^{-1/2}(\partial G_q)G_q^{-1/2}$ and
+the corresponding second derivatives; no uniform Euclidean lower
+bound for $G_q$ is needed. On overlapping charts the forms are
+compared on the same bundle  fibers and patched to metrics
+$\widehat G_q$. 
+
+Define the graph metrics recursively by
+\[
+H_q=\widehat G_q+d_q^*H_{q-1}d_q
+     =\widehat G_q+d_q^*\widehat G_{q-1}d_q,
+\]
+where $\widehat G_{-1}=1$ and the second equality follows from
+$d_{q-1}d_q=0$ for $q\ge1$ (and directly from the definition for
+$q=0$). These metrics make all differentials contractive.
+The Chern curvature formula
+$\Theta(H)=\dbar(H^{-1}\partial H)$ converts the relative first
+and second derivative bounds into $O(\eps^{-2})$
+\cite[Section~3]{Demailly}. Derivative evaluation in
+\eqref{eq:jets}, followed by  Euler's homogeneous identity, gives the second estimate in \eqref{eq:metric-estimates}.
+
+Hermitian splittings, curvature estimates, and $L^2$ lifting already
+play a central role in Skoda's bundle-morphism theorem
+\cite{Skoda1978}. The assertion needed here is the simultaneous
+control of division, differentiation, and curvature by these sampled
+metrics. Positive definiteness of a metric does not imply positive
+curvature; its possible negative curvature will be dominated by
+the growing positive line-bundle twist. The construction of D uses
+the fixed polynomial presentation and constant independence of its
+columns. The compactness and Hilbert-function conclusions of B
+supply the uniform division input. Exactness of the actual
+presentation places holomorphic cycles in the required image sheaves.
+
+\subsection{Theorem E: bounded projective lifting}
+All $L^2$ norms below use normalized Fubini--Study volume and the displayed
+coefficient and line metrics.
+
+\begin{theorem}[Bounded projective lifting]\label{thm:lift}
+There are fixed $R_*>0$, $n_0$, and $C$ such that, for
+$n\ge n_0$, $\eps_n=R_*/\sqrt n$, and $h\in\{n,n+1\}$, there is
+a linear map
+\[
+ T_{n,h}:H^0(W,\cI\otimes L^h)
+      \longrightarrow H^0(W,E_0\otimes L^h)
+\]
+satisfying
+\begin{equation}\label{eq:lift}
+ \Phi T_{n,h}F=F,\qquad
+ \|T_{n,h}F\|_{H_{0,\eps_n}\otimes L^h}
+       \le C\|F\|_{L^h}.
+\end{equation}
+The datum retains its original scalar norm, and the same coefficient
+metric serves both adjacent line powers.
+\end{theorem}
+
+\emph{Projective lifting} means finding a global holomorphic
+coefficient section above the datum under $\Phi$.
+Serre vanishing gives surjectivity in sufficiently high degree;
+the additional assertion in E is the bound uniform in $n$, in the
+metrics of D and with the datum's original scalar norm.
+
+
+On balls of radius $O(\eps)$, a holomorphic line
+frame removes the constant and linear terms of the Fubini--Study
+potential. The remaining weight variation is bounded by
+$\exp(C h\eps^2)$. Theorems~\ref{thm:division} and
+\ref{thm:metrics} therefore give local holomorphic division with
+uniform constants whenever $h\eps^2$ is bounded.
+
+%DIFDELCMD < %%%
+\DIFdelend On $E_q\otimes L^h$, the Bochner--Kodaira--Nakano estimate,
+applied in top holomorphic degree after the canonical $K_W^{-1}$
+twist, gives a solution operator for closed positive-degree forms with
+\begin{equation}\label{eq:dbar}
+ \dbar u=\zeta,\qquad
+ \|u\|\le(c_Lh-C_0-C_1\eps^{-2})^{-1/2}\|\zeta\|,
+\end{equation}
+when the quantity in parentheses is positive \cite{Demailly}.
+Choose $R_*$ large enough that $C_1/R_*^2<c_L/2$, and then choose
+$n_0$ large. At $\eps=\eps_n$ and $h=n,n+1$, the solution operator
+has norm $O(\eps_n)$. Thus the two requirements are compatible:
+the local line weight has variation $\exp(O(h\eps_n^2))$,
+while the positive curvature of $L^h$ dominates the
+$O(\eps_n^{-2})$ coefficient-curvature loss. The constant $R_*$ is
+fixed first; it need not be small.
+
+
+Take a bounded-overlap cover at this scale with buffered balls.
+Local lifts and their holomorphic alternating differences are divided
+successively through $d_1,\ldots,d_N$. In \v Cech notation, these
+cochains satisfy
+\[
+\Phi c_0=F,\qquad d_qc_q=\delta c_{q-1}.
+\]
+The right side is a holomorphic cycle because $\delta^2=0$ and
+the preceding lifting identity holds. Exactness places it in the
+next image sheaf, where C applies. The buffers keep every such
+datum inside the entire input ball required for division. Only then introduce a partition of unity and set
+\[
+ \eta_q=\sum_{i_0,\ldots,i_q}
+ \chi_{i_0}\dbar\chi_{i_1}\wedge\cdots\wedge\dbar\chi_{i_q}
+ c_{q,i_0\ldots i_q}.
+\]
+The ordered alternating-cochain convention gives
+\[
+\Phi\eta_0=F,\qquad
+ d_q\eta_q=\dbar\eta_{q-1},\qquad
+ \dbar\eta_N=0,\qquad
+ \|\eta_q\|\le C_q\eps_n^{-q}\|F\|.
+\]
+\DIFaddend Bounded overlap controls the sum of local squared norms, independently
+of the number of balls. The factor $\eps_n^{-q}$ comes from the
+$q$ differentiated cutoffs. All resulting forms take values in the
+smooth bundles $E_q\otimes L^h$; no kernel sheaf is assumed to be a
+vector bundle.
+
+Now set $\zeta_N=\eta_N$ and descend by
+\[
+ \dbar u_q=\zeta_q,\qquad
+ \zeta_{q-1}=\eta_{q-1}-d_qu_q,
+ \qquad q=N,\ldots,1.
+\]
+The top form is closed for dimensional reasons. At each lower stage,
+\[
+\dbar\zeta_{q-1}
+ =d_q(\eta_q-\zeta_q).
+\]
+This is zero when $q=N$ because $\zeta_N=\eta_N$; when $q<N$,
+it equals $d_qd_{q+1}u_{q+1}=0$. Each solution
+recovers one factor $\eps_n$ lost to a differentiated cutoff, and
+contractivity of $d_q$ preserves the estimate. The finite recursion
+yields a holomorphic $a=\zeta_0$ with $\Phi a=F$ and
+$\|a\|\le C\|F\|$. The presentation, curvature constants and
+division radii are fixed before $R_*$ is chosen. Local constants may
+grow with $R_*$; a finite descent requires only that they be fixed
+as $n$ varies. More explicitly, if the $\dbar$ solver has norm at most
+$b\eps_n$ and $\|\eta_q\|\le C_q\eps_n^{-q}\|F\|$, induction gives
+\[
+\|a\|\le \left(\sum_{q=0}^N b^qC_q\right)\|F\|.
+\]
+There is no convergence of an infinite correction scheme to prove.
+The same metrics serve $h=n,n+1$; the two linear lifting operators
+may be chosen separately.
+
+H\"ormander's work on generators and Kelleher--Taylor's weighted
+ideal theory use the interaction between holomorphic division and
+$\dbar$ \cite{HormanderGenerators,KelleherTaylor}.
+Kelleher--Taylor explicitly organize the correction with a
+Koszul--Dolbeault complex \cite[Section~II]{KelleherTaylor}.
+Skoda's $L^2$ division theorem obtains quantitative holomorphic
+coefficients under generator-dependent integrability conditions
+\cite{Skoda1972}; its proof uses a direct estimate rather than
+that Koszul construction. His later bundle-morphism theorem starts
+from a smooth Hermitian splitting and corrects its $\dbar$ error
+\cite[Section~2]{Skoda1978}.
+
+
+Andersson uses descending $\dbar$ correction in polynomial division
+\cite[Theorem~2.3 and Example~2.4]{Andersson2006}.
+Andersson--Wulcan then work with general locally free complexes and
+residue currents. In their projective application, a graded free
+resolution is sheafified, twisted by $\cO(r)$, and used in successive
+global $\dbar$ equations \cite[Section~6, Proposition~6.1]{AnderssonWulcan}.
+This is a direct structural antecedent of E. The present construction
+starts with local holomorphic divisions and forms obtained from
+\v Cech cochains. The quantitative task is to keep their correction
+bounded in the degree-dependent metrics, while retaining the
+original norm of every datum in the image sheaf.
+
+
+Varolin's twisted division estimates and Ji's division theorems for
+generically exact bundle sequences further develop the role of
+curvature and $L^2$ estimates in division
+\cite{Varolin,Ji}. Their hypotheses and weighted norms must be
+compared with the desired estimate: E concerns every projective ideal
+section in its original scalar norm. Its specific claim is
+simultaneous uniformity in the line power, local scale, and
+normalized matrix families.
+
+
+\section{Step 3: return to the Drury--Arveson shift}
+\label{sec:step-three}
+
+\subsection{Differentiation and projection}
+For the scalar ideal from Step~1, write
+$Q_n^I=R_n^{(d)}\ominus I_n$, $X_j=M_{x_j}$, and
+$B_{j,n}^I=P_{I_{n+1}}X_j|_{Q_n^I}$. For $n\ge n_0$ with
+both $n$ and $n+1$ beyond the saturation discrepancy, take
+$F\in I_{n+1}$ and let
+$a=T_{n,n+1}F$. Differentiating the holomorphic lift $F=\Phi a$ gives
+\[
+ P_{Q_n^I}\partial_{x_j}F
+ =P_{Q_n^I}\bigl((\partial_{x_j}\Phi)a\bigr),
+\]
+because $\Phi\partial_{x_j}a\in I_n$. Thus projection eliminates
+derivatives of the coefficient section. On degree $n+1$,
+$X_j^*=(n+1)^{-1}\partial_{x_j}$. Theorems~\ref{thm:metrics}
+and~\ref{thm:lift}, followed by the exact norm conversion
+\eqref{eq:norm}, give
+\begin{align}
+\|(B_{j,n}^I)^*F\|_{\DA}
+ &\le\frac{C}{\eps_n(n+1)}
+       \sqrt{\frac{c_n}{c_{n+1}}}\,\|F\|_{\DA}\notag\\
+ &=\frac{C}{\eps_n\sqrt{(n+1)(n+d)}}\|F\|_{\DA}
+   =O(n^{-1/2})\|F\|_{\DA}.\label{eq:return}
+\end{align}
+Summing the squared bounds and absorbing the finitely many omitted
+blocks proves the scalar estimate in every ambient dimension:
+\begin{equation}\label{eq:scalar-defect}
+ A_n^I=\sum_{j=1}^d(B_{j,n}^I)^*B_{j,n}^I
+ \le\frac{C_I}{n+1}\Id_{Q_n^I}.
+\end{equation}
+
+\subsection{Finite coefficient multiplicity}
+Return to $M\subset R\otimes\C^r$ from Theorem~\ref{thm:main}.
+Choose an orthonormal coefficient basis and homogeneous generators
+$f^{(1)},\ldots,f^{(s)}$ of $M$. Adjoin $r$ variables and set
+\begin{equation}\label{eq:encoding}
+ \lambda(f)=\sum_{b=1}^r f_b(z)y_b,\qquad
+ J_M=(\lambda(f^{(1)}),\ldots,\lambda(f^{(s)}))+(y_1,\ldots,y_r)^2.
+\end{equation}
+This is an ideal in $R'=R[y_1,\ldots,y_r]$, homogeneous in both
+groups of variables separately. Its part of $y$-degree one is
+$\lambda(M)$; all higher $y$-degrees lie in $J_M$. The encoding and
+its degreewise normalization follow Shalit's auxiliary-variable
+method \cite[Section~5, equation~(5.1)]{ShalitDivision}. The
+square-zero relations make the complete positive defect explicit.
+
+Let $\mathcal E_n$ be the sector of the scalar quotient by
+$\overline{J_M}$ having $z$-degree $n$ and $y$-degree one. Its total
+degree is $n+1$. The map
+\begin{equation}\label{eq:unitary}
+ U_n:Q_n\longrightarrow\mathcal E_n,\qquad
+ U_nq=\sqrt{n+1}\sum_{b=1}^r q_b(z)y_b
+\end{equation}
+is unitary: the squared monomial norms are respectively
+$\alpha!/n!$ and $\alpha!/(n+1)!$, and the map identifies the
+corresponding polynomial submodules.
+
+Let $A_\ell^{J_M}$ be the scalar defect summed over all $m+r$
+coordinates. The exact transfer identity is
+\begin{equation}\label{eq:vector-transfer}
+ U_n^*A_{n+1}^{J_M}U_n
+ =\frac{n+1}{n+2}A_n+\frac{r+1}{n+2}\Id_{Q_n}.
+\end{equation}
+Indeed, multiplication by $z_j$ changes the unitary normalization by
+$\sqrt{(n+1)/(n+2)}$. Every product $y_bU_nq$ belongs to $J_M$,
+and the sum of its squared forward weights over $b$ is
+$(r+1)/(n+2)$. The bigrading makes the auxiliary-degree sectors
+orthogonal. Applying \eqref{eq:scalar-defect} in total degree $n+1$
+and dropping the positive scalar term gives
+\[
+ \frac{n+1}{n+2}A_n\le\frac{C_{J_M}}{n+2}\Id,
+ \qquad A_n\le\frac{C_{J_M}}{n+1}\Id.
+\]
+This proves the defect estimate in the original vector-valued norm.
+Equations~\eqref{eq:compression}--\eqref{eq:ambient} then give the
+quotient commutator estimate in Theorem~\ref{thm:main}.
+
+\subsection{Counting in the original quotient}
+For infinite-dimensional $T=(R\otimes\C^r)/M$ and
+$\delta=\dim\Supp_R T$, the Hilbert polynomial gives
+$\dim Q_n=\dim T_n=O((n+1)^{\delta-1})$. A block of norm at most
+$C/(n+1)$ contributes no singular values greater than $t$ when
+$n+1>C/t$. Consequently
+\[
+ \#\{k:s_k([S_i^*,S_j])>t\}
+ \le\sum_{n+1\le C/t}\dim Q_n=O(t^{-\delta}).
+\]
+This is \eqref{eq:weak}. Counting the column defect, whose
+degree-$n$ norm is $O((n+1)^{-1/2})$, gives the exponent $2\delta$.
+Each $[P_{\mathcal M},Z_j]$ is the corresponding off-diagonal block
+extended by zero. For the restriction tuple,
+\[
+ [V_i^*,V_j]|_{M_n}
+ =P_{M_n}[Z_i^*,Z_j]|_{M_n}+B_{j,n-1}B_{i,n-1}^*,
+\]
+where the last term is zero at $n=0$. These blocks are
+$O((n+1)^{-1})$ and
+$\dim M_n\le r\binom{n+m-1}{m-1}$, giving the weak exponent $m$.
+If $T$ is finite dimensional, the quotient and off-diagonal terms
+have finite rank, while the restriction estimate remains valid.
+
+Since $\sqrt{J_M}=(y_1,\ldots,y_r)$, the auxiliary quotient has
+dimension $m$, possibly larger than $\delta$. Counting there loses the sharper exponent;
+ replacing $J_M$ by its radical deletes the
+sector encoding $T$.
+
+
+
+\begin{thebibliography}{99}
+% Alphabetized by author surname; anonymous companion manuscript by title.
+% Compared by citation key; reordering alone is not marked. Deleted entries remain in red.
+
+\bibitem{Andersson2006}
+M.~Andersson, The membership problem for polynomial ideals in
+terms of residue currents, \emph{Ann. Inst. Fourier (Grenoble)}
+\textbf{56} (2006), no.~1, 101--119.
+\href{https://doi.org/10.5802/aif.2174}{doi:10.5802/aif.2174}.
+
+\bibitem{AnderssonWulcan}
+M.~Andersson and E.~Wulcan, Residue currents with prescribed
+annihilator ideals, \emph{Ann. Sci. \'Ecole Norm. Sup. (4)}
+\textbf{40} (2007), no.~6, 985--1007.
+\href{https://doi.org/10.1016/j.ansens.2007.11.001}{doi:10.1016/j.ansens.2007.11.001}.
+
+\bibitem{Arveson1998}
+W.~Arveson, Subalgebras of $C^*$-algebras III: multivariable operator
+theory, \emph{Acta Math.} \textbf{181} (1998), 159--228.
+\url{https://doi.org/10.1007/BF02392585}.
+
+
+\bibitem{Arveson2005}
+W.~Arveson, $p$-summable commutators in dimension $d$,
+\emph{J. Operator Theory} \textbf{54} (2005), 101--117.
+\url{https://www.jstor.org/stable/24715673}.
+
+
+\bibitem{Beatrous}
+F.~Beatrous, Jr., $L^p$-estimates for extensions of holomorphic
+functions, \emph{Michigan Math. J.} \textbf{32} (1985), no.~3,
+361--380.
+\href{https://doi.org/10.1307/mmj/1029003244}{doi:10.1307/mmj/1029003244}.
+
+\bibitem{Conrad}
+B.~Conrad, \emph{Applications of base change for coherent cohomology},
+Math 248B notes, Theorem~1.1 and Corollary~1.2.
+\url{https://math.stanford.edu/~conrad/248BPage/handouts/cohom.pdf}.
+
+\bibitem{Demailly}
+J.-P.~Demailly, \emph{Applications of the theory of $L^2$ estimates
+and positive currents in algebraic geometry}, lecture notes, 2007,
+Sections~3, 5--6, and~12. 
+\url{https://www-fourier.univ-grenoble-alpes.fr/~demailly/manuscripts/eem2007.pdf}.
+
+\bibitem{Ding26}
+L.~Ding, {Essential normality of holomorphic Sobolev quotient submodules}, \emph{Trans. Amer. Math. Soc.} \textbf{379} (2026), 7525–7555. \url{https://doi.org/10.1090/tran/9717}.
+
+
+\bibitem{DingFangTang}
+
+L.~Ding, X.~Fang, and X.~Tang,
+\emph{Projective division and essential normality of graded Hilbert modules},
+companion research manuscript, 20 November 2026, 39 pp.;
+Theorem~1.1 and Sections~3--8. Working draft for independent
+mathematical assessment.
+
+
+\bibitem{DouglasIndex}
+R.~G.~Douglas, A new kind of index theorem, in
+\emph{Analysis, Geometry and Topology of Elliptic Operators},
+World Scientific, 2006, 369--382.
+\url{https://doi.org/10.1142/9789812773609_0014}.
+
+\bibitem{DouglasJabbariTangYu}
+R.~G.~Douglas, M.~Jabbari, X.~Tang, and G.~Yu,
+A new index theorem for monomial ideals by resolutions,
+\emph{J. Funct. Anal.} \textbf{275} (2018), no.~3, 735--760. \href{https://doi.org/10.1016/j.jfa.2018.04.003}{doi:10.1016/j.jfa.2018.04.003}.
+\url{https://arxiv.org/abs/1708.05796}.
+
+\bibitem{DouglasTangYu}
+R.~G.~Douglas, X.~Tang, and G.~Yu, An analytic Grothendieck Riemann
+Roch theorem, \emph{Adv. Math.} \textbf{294} (2016), 307--331.
+\href{https://doi.org/10.1016/j.aim.2016.02.031}{doi:10.1016/j.aim.2016.02.031}.
+\url{https://arxiv.org/abs/1404.4396}.
+
+\bibitem{EnglisEschmeier}
+M.~Engli\v{s} and J.~Eschmeier, Geometric Arveson--Douglas conjecture,
+\emph{Adv. Math.} \textbf{274} (2015), 606--630; corrigendum,
+\emph{Adv. Math.} \textbf{278} (2015), 254.
+\href{https://doi.org/10.1016/j.aim.2014.11.026}{doi:10.1016/j.aim.2014.11.026}.
+
+
+\bibitem{EschmeierCriterion}
+J.~Eschmeier, Essential normality of homogeneous submodules,
+\emph{Integral Equations Operator Theory} \textbf{69} (2011), 171--182.
+\href{https://doi.org/10.1007/s00020-010-1809-4}{doi:10.1007/s00020-010-1809-4}.
+
+\bibitem{Galligo}
+A.~Galligo, Th\'eor\`eme de division et stabilit\'e en g\'eom\'etrie
+analytique locale, \emph{Ann. Inst. Fourier (Grenoble)}
+\textbf{29} (1979), no.~2, 107--184.
+\href{https://doi.org/10.5802/aif.745}{doi:10.5802/aif.745}.
+
+\bibitem{GrauertRemmert}
+H.~Grauert and R.~Remmert, \emph{Theory of Stein Spaces},
+Grundlehren der mathematischen Wissenschaften, vol.~236,
+Springer, 1979.
+
+\bibitem{GuoWang}
+K.~Guo and K.~Wang, Essentially normal Hilbert modules and
+$K$-homology, \emph{Math. Ann.} \textbf{340} (2008), 907--934.
+\href{https://doi.org/10.1007/s00208-007-0175-2}{doi:10.1007/s00208-007-0175-2}.
+
+
+\bibitem{HauserMuller}
+H.~Hauser and G.~M\"uller, A rank theorem for analytic maps between
+power series spaces, \emph{Publ. Math. Inst. Hautes \'Etudes Sci.}
+\textbf{80} (1994), 95--115.
+\href{https://doi.org/10.1007/BF02698897}{doi:10.1007/BF02698897}.
+
+%\bibitem{HeltonHowe75}
+%{\color{red}
+%J.~Helton, R.~Howe, {Traces of commutators of integral operators,} \emph{Acta Math.} \textbf{135} (1975), 271-305. \url{https://doi.org/10.1007/BF02392022}.
+%}
+
+\bibitem{HormanderGenerators}
+L.~H\"ormander, Generators for some rings of analytic functions,
+\emph{Bull. Amer. Math. Soc.} \textbf{73} (1967), 943--949.
+\href{https://doi.org/10.1090/S0002-9904-1967-11860-3}{doi:10.1090/S0002-9904-1967-11860-3}.
+
+\bibitem{Ji}
+Q.~Ji, Division theorems for exact sequences,
+\emph{Math. Ann.} \textbf{355} (2013), no.~3, 947--984.
+\href{https://doi.org/10.1007/s00208-012-0807-z}{doi:10.1007/s00208-012-0807-z}.
+
+\bibitem{KelleherTaylor}
+J.~J.~Kelleher and B.~A.~Taylor, Finitely generated ideals in rings
+of analytic functions, \emph{Math. Ann.} \textbf{193} (1971),
+225--237.
+\href{https://doi.org/10.1007/BF02052394}{doi:10.1007/BF02052394}.
+
+\bibitem{Companion}
+\emph{Projective division and essential normality of graded Hilbert modules},
+companion research manuscript, 20 November 2026, 39 pp.;
+Theorem~1.1 and Sections~3--8. Working draft for independent
+mathematical assessment.
+
+\bibitem{ShalitDivision}
+O.~M.~Shalit, Stable polynomial division and essential normality of
+graded Hilbert modules, \emph{J. Lond. Math. Soc. (2)}
+\textbf{83} (2011), 273--289.
+\url{https://doi.wiley.com/10.1112/jlms/jdq054}.
+
+
+\bibitem{Skoda1972}
+H.~Skoda, Application des techniques $L^2$ \`a la th\'eorie des
+id\'eaux d'une alg\`ebre de fonctions holomorphes avec poids,
+\emph{Ann. Sci. \'Ecole Norm. Sup. (4)} \textbf{5} (1972), no.~4,
+545--579.
+\href{https://doi.org/10.24033/asens.1237}{doi:10.24033/asens.1237}.
+
+\bibitem{Skoda1978}
+H.~Skoda, Morphismes surjectifs de fibr\'es vectoriels semi-positifs,
+\emph{Ann. Sci. \'Ecole Norm. Sup. (4)} \textbf{11} (1978), no.~4,
+577--611.
+\href{https://doi.org/10.24033/asens.1357}{doi:10.24033/asens.1357}.
+
+\bibitem{Stacks}
+The Stacks Project Authors, \emph{The Stacks Project},
+Castelnuovo--Mumford regularity, Tags 08A6--08A8 and 08AG;
+properness of Quot, Tag 0DPA.
+\url{https://stacks.math.columbia.edu/tag/08AG};
+\url{https://stacks.math.columbia.edu/tag/0DPA}.
+
+\bibitem{Varolin}
+D.~Varolin, Division theorems and twisted complexes,
+\emph{Math. Z.} \textbf{259} (2008), no.~1, 1--20.
+\href{https://doi.org/10.1007/s00209-007-0133-4}{doi:10.1007/s00209-007-0133-4}.
+
+\end{thebibliography}
+\end{document}
